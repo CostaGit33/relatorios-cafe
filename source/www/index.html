@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Relatórios de Produtos</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Relatórios de Produtos</h1>
+
+    <form id="relatorio-form">
+      <label for="empresa">Selecione o Atacado</label>
+      <select id="empresa" required>
+        <option value="" disabled selected>Escolha o atacado</option>
+        <option value="Atacadao">Atacadao</option>
+        <option value="BH">BH</option>
+        <option value="Mix Matheus">Mix Matheus</option>
+        <option value="Mercadinho da Esquina">Mercadinho da Esquina</option>
+        <option value="Mercadinho Limeira">Mercadinho Limeira</option>
+        <option value="Supermercado Econômico">Supermercado Econômico</option>
+        <option value="Supermercado Nacional">Supermercado Nacional</option>
+        <option value="Supermercado Niban">Supermercado Niban</option>
+        <option value="Supermercado Cardoso">Supermercado Cardoso</option>
+        <option value="Supermercado Junior 1">Supermercado Junior 1</option>
+        <option value="Supermercado Junior 2">Supermercado Junior 2</option>
+        <option value="Supermercado Santana">Supermercado Santana</option>
+        <option value="Compraki Conveniência">Compraki Conveniência</option>
+        <option value="Supermercado cambui">Supermercado cambui</option>
+        <option value="Supermercado Mini Preço">Supermercado Mini Preço</option>
+        <option value="Supermercado Guimarães">Supermercado Guimarães</option>
+        <option value="Supermercado Noronha">Supermercado Noronha</option>
+        <option value="Marck Sul">Marck Sul</option>
+        <option value="Marck Sul Xpress">Marck Sul Xpress</option>
+        <option value="Cestão do povo">Cestão do povo</option>
+        <option value="Supermercado Colares">Supermercado Colares</option>
+      </select>
+
+      <label for="fornecedor">Marca</label>
+      <select id="fornecedor" required>
+        <option disabled selected>Escolha o fornecedor</option>
+      </select>
+
+      <label for="produto">Produto</label>
+      <select id="produto" required>
+        <option disabled selected>Escolha o produto</option>
+      </select>
+
+      <label for="estoque">Estoque</label>
+      <div class="estoque-grupo">
+        <input
+          type="number"
+          id="estoque"
+          placeholder="Qtd"
+          inputmode="numeric"
+          min="0"
+          required
+        />
+        <label for="tipoEstoque">-</label>
+        <select id="tipoEstoque" required>
+          <option value="UND" selected>UND</option>
+          <option value="CX">CX</option>
+        </select>
+      </div>
+
+      <label for="validade">Validade</label>
+      <input type="date" id="validade" required />
+
+      <label for="preco">Preço</label>
+      <input
+        type="text"
+        id="preco"
+        placeholder="Preço (ex: 2,99)"
+        pattern="^\d+(,\d{1,2})?$"
+        required
+      />
+
+      <button type="submit">Adicionar Relatório</button>
+    </form>
+
+    <div class="export-actions">
+      <button type="button" id="exportar-pdf">Exportar PDF</button>
+    </div>
+
+    <div id="tabelas-container" class="table-container"></div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
