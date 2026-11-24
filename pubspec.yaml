@@ -1,0 +1,20 @@
+name: relatorios_cafe
+description: Aplicativo de relatórios de produtos e estoque.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  webview_flutter: ^4.13.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - source/www/
+    - source/www/css/
+    - source/www/js/
+    - source/www/img/

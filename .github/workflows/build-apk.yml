@@ -1,0 +1,42 @@
+name: Build APK Flutter
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Gerar projeto Android Flutter
+        run: flutter create --platforms=android --org com.cafepromotor --project-name relatorios_cafe .
+
+      - name: Permitir acesso à internet no Android
+        run: sed -i '/<application/i\    <uses-permission android:name="android.permission.INTERNET" />' android/app/src/main/AndroidManifest.xml
+
+      - name: Instalar dependências
+        run: flutter pub get
+
+      - name: Compilar APK debug
+        run: flutter build apk --debug
+
+      - name: Publicar APK como artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorios-cafe-debug-apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: error
+          retention-days: 30

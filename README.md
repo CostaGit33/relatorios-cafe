@@ -1,15 +1,47 @@
 # Relatórios Café
 
-Artefatos Android do aplicativo de relatórios.
+Aplicativo de relatórios de produtos e estoque, preparado para ser recompilado com Flutter.
 
-## APK de desenvolvimento
+## Lojas cadastradas
 
-O APK disponível em [`artifacts/android/app-debug-1.apk`](artifacts/android/app-debug-1.apk) foi adicionado a este repositório sem alterações.
+A interface contém estas lojas:
 
-- Arquivo: `app-debug-1.apk`
-- Tipo: APK Android de desenvolvimento (`debug`)
-- Versão identificada no manifesto: `1.0.0`
-- Android Gradle Plugin usado na compilação: `8.10.1`
-- SHA-256: consulte [`artifacts/android/SHA256SUMS`](artifacts/android/SHA256SUMS)
+- Atacadao
+- BH
+- Mix Matheus
+- Mercadinho da Esquina
+- Mercadinho Limeira
+- Supermercado Econômico
+- Supermercado Nacional
+- Supermercado Niban
+- Supermercado Cardoso
+- Supermercado Junior 1
+- Supermercado Junior 2
+- Supermercado Santana
+- Compraki Conveniência
+- Supermercado cambui
+- Supermercado Mini Preço
+- Supermercado Guimarães
+- Supermercado Noronha
+- Marck Sul
+- Marck Sul Xpress
+- Cestão do povo
+- Supermercado Colares
 
-Este arquivo é o pacote compilado. O código-fonte Gradle original não está contido em um APK; para reconstruir o aplicativo, também seriam necessários os arquivos do projeto Android, como `settings.gradle`, `build.gradle`, `app/`, recursos e código-fonte.
+## Flutter
+
+O aplicativo Flutter em [`lib/main.dart`](lib/main.dart) carrega a interface web mantida em [`source/www/`](source/www/). Os dados continuam sendo armazenados localmente pelo `localStorage` do WebView.
+
+O workflow [`build-apk.yml`](.github/workflows/build-apk.yml) instala o Flutter em um runner Ubuntu do GitHub Actions, gera a estrutura Android, executa `flutter build apk --debug` e publica `app-debug.apk` como artefato da execução.
+
+Para gerar manualmente, com Flutter instalado:
+
+```bash
+flutter create --platforms=android --org com.cafepromotor --project-name relatorios_cafe .
+flutter pub get
+flutter build apk --debug
+```
+
+O APK fica em `build/app/outputs/flutter-apk/app-debug.apk`.
+
+O APK de desenvolvimento anterior está preservado em [`artifacts/android/app-debug-1.apk`](artifacts/android/app-debug-1.apk).
